@@ -90,11 +90,17 @@
       var cePower = parseInt(slider.value);
 
       var techniquePower = parseInt(techniques.selectedOptions[0].getAttribute("power"));
+      var techniqueType = techniques.selectedOptions[0].getAttribute("value");
       var weaponPower = parseInt(weapons.selectedOptions[0].getAttribute("power"));
       var speciesPower = parseInt(species.selectedOptions[0].getAttribute("power"));
       var domainPower = parseInt(domains.selectedOptions[0].getAttribute("power"));
 
+      if (techniqueType == restriction && cePower == 0) {
+        techniquePower = 200;
+      }
+
       var total = cePower + techniquePower + weaponPower + speciesPower + domainPower;
+
 
       totalPowerOutput.innerHTML = total;
       output.innerHTML = cePower;
