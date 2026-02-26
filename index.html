@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <label for="technique">Choose a Curse Technique:</label>
+  <select name="technique" id="techniques">
+    <option value="empty" power="0">None</option>
+    <option value="eyes" power="100">Six Eyes</option>
+    <option value="limitless" power="100"> Limitless</option>
+    <option value="shrine" power="100">Shrine</option>
+    <option value="boogie" power="40">Boogie Woogie</option>
+    <option value="shadows" power="60">Ten Shadows</option>
+    <option value="restriction" power="80">Heavenly Restriction</option>
+    <option value="transfiguration" power="70">Idle Transfiguration</option>
+    <option value="ratio" power="40">Ratio</option>
+    <option value="star" power="80">Star Rage</option>
+    <option value="projection" power="50">Projection Sorcery</option>
+  </select>
+
+  <label for="weapon"><br><br>Choose a Weapon Type:</label>
+  <select name="weapon" id="weapons">
+    <option value="empty" power="0">None</option>
+    <option value="soulsplit" power="90">Soul Split Katana</option>
+    <option value="cloud" power="90">Playful Cloud</option>
+    <option value="spear" power="80">Inverted Spear of Heaven</option>
+    <option value="rope" power="50">Black Rope</option>
+    <option value="executioner" power="100">Executioner's Sword</option>
+    <option value="dragon" power="30">Dragon-Bone</option>
+    <option value="kamutoke" power="100">Kamutoke</option>
+  </select>
+
+  <label for="species"><br><br>Choose a Species:</label>
+  <select name="species" id="species">
+    <option value="human" power="5">Human</option>
+    <option value="curse" power="3">Curse</option>
+    <option value="disaster" power="80">Disaster Curse</option>
+    <option value="reincarnation" power="90">Reincarnation</option>
+    <option value="painting" power="65">Death Painting</option>
+    <option value="vessel" power="65">Vessel</option>
+    <option value="Vengeful" power="80">Vengeful Spirit</option>
+  </select>
+
+  <label for="domain"><br><br>Choose a Domain Type:</label>
+  <select name="domain" id="domains">
+    <option value="empty" power="0">None</option>
+    <option value="Barrier" power="70">Barrier</option>
+    <option value="incomplete" power="50">Incomplete</option>
+    <option value="Barrierless" power="100">Barrierless</option>
+  </select>
+
+  <label for="ce"><br><br>Cursed Energy:</label>
+  <input type="range" id="ce" name="ce" min="0" max="200" value="50" step="1">
+  <p>Current Cursed Energy: <output id="valueOutput">"ce"</output></p>
+  
+  <p>Total Power: <output id="power">"totalPower"</output></p>
+  <script>
+    var slider = document.getElementById("ce");
+    var output = document.getElementById("valueOutput");
+    var totalPowerOutput = document.getElementById("power");
+
+    var techniques = document.getElementById("techniques");
+    var weapons = document.getElementById("weapons");
+    var species = document.getElementById("species");
+    var domains = document.getElementById("domains");
+
+    // Show starting cursed energy
+    output.innerHTML = slider.value;
+
+    function calculatePower() {
+      var cePower = parseInt(slider.value);
+
+      var techniquePower = parseInt(techniques.selectedOptions[0].getAttribute("power"));
+      var weaponPower = parseInt(weapons.selectedOptions[0].getAttribute("power"));
+      var speciesPower = parseInt(species.selectedOptions[0].getAttribute("power"));
+      var domainPower = parseInt(domains.selectedOptions[0].getAttribute("power"));
+
+      var total = cePower + techniquePower + weaponPower + speciesPower + domainPower;
+
+      totalPowerOutput.innerHTML = total;
+    }
+
+    // Update CE number and total power
+    slider.oninput = function () {
+      output.innerHTML = this.value;
+      calculatePower();
+    };
+
+    // Update total power when dropdown changes
+    techniques.onchange = calculatePower;
+    weapons.onchange = calculatePower;
+    species.onchange = calculatePower;
+    domains.onchange = calculatePower;
+
+    // Run once at start
+    calculatePower();
+  </script>
+</body>
+
+</html>
