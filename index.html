@@ -76,38 +76,31 @@
   <p class="grade-display">Grade: <span id="grade">Grade 4</span></p>
 
   <script>
-    const slider = document.getElementById("ce");
-    const output = document.getElementById("valueOutput");
-    const totalPowerOutput = document.getElementById("power");
-    const gradeOutput = document.getElementById("grade");
+    var slider = document.getElementById("ce");
+    var output = document.getElementById("valueOutput");
+    var totalPowerOutput = document.getElementById("power");
+    var gradeOutput = document.getElementById("grade");
 
-    const techniques = document.getElementById("techniques");
-    const weapons = document.getElementById("weapons");
-    const species = document.getElementById("species");
-    const domains = document.getElementById("domains");
+    var techniques = document.getElementById("techniques");
+    var weapons = document.getElementById("weapons");
+    var species = document.getElementById("species");
+    var domains = document.getElementById("domains");
 
     function calculatePower() {
-      const cePower = parseInt(slider.value);
+      var cePower = parseInt(slider.value);
 
-      let techniquePower = parseInt(techniques.selectedOptions[0].getAttribute("power"));
-      const techniqueType = techniques.selectedOptions[0].getAttribute("value");
+      var techniquePower = parseInt(techniques.selectedOptions[0].getAttribute("power"));
+      var weaponPower = parseInt(weapons.selectedOptions[0].getAttribute("power"));
+      var speciesPower = parseInt(species.selectedOptions[0].getAttribute("power"));
+      var domainPower = parseInt(domains.selectedOptions[0].getAttribute("power"));
 
-      // Special rule for Heavenly Restriction
-      if (techniqueType === "restriction" && cePower === 0) {
-        techniquePower = 200;
-      }
-
-      const weaponPower = parseInt(weapons.selectedOptions[0].getAttribute("power"));
-      const speciesPower = parseInt(species.selectedOptions[0].getAttribute("power"));
-      const domainPower = parseInt(domains.selectedOptions[0].getAttribute("power"));
-
-      const total = cePower + techniquePower + weaponPower + speciesPower + domainPower;
+      var total = cePower + techniquePower + weaponPower + speciesPower + domainPower;
 
       totalPowerOutput.innerHTML = total;
       output.innerHTML = cePower;
 
-      // Determine grade
-      let grade;
+      var grade;
+
       if (total >= 400) {
         grade = "Special Grade";
         gradeOutput.className = "special";
@@ -131,14 +124,12 @@
       gradeOutput.innerHTML = grade;
     }
 
-    // Event listeners
     slider.oninput = calculatePower;
     techniques.onchange = calculatePower;
     weapons.onchange = calculatePower;
     species.onchange = calculatePower;
     domains.onchange = calculatePower;
 
-    // Initial calculation
     calculatePower();
   </script>
 
