@@ -1,0 +1,78 @@
+/* Import anime-style font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
+
+body {
+  background: radial-gradient(circle at top, #111 0%, #000 60%);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  padding: 40px;
+}
+
+/* Headings & Labels */
+label {
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #e10600; /* Sukuna red */
+  text-shadow: 0 0 8px #e10600;
+}
+
+/* Dropdown Styling */
+select {
+  background: #1a1a1a;
+  color: white;
+  border: 2px solid #e10600;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: 0.3s ease;
+  width: 220px;
+}
+
+select:hover {
+  box-shadow: 0 0 15px #e10600;
+  transform: scale(1.05);
+}
+
+/* Slider Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 250px;
+  height: 8px;
+  background: linear-gradient(to right, #0033ff, #e10600);
+  border-radius: 5px;
+  outline: none;
+  margin-top: 20px;
+}
+
+/* Slider Thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 15px #0033ff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 25px #e10600;
+  transform: scale(1.2);
+}
+
+/* Cursed Energy Display */
+p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+#valueOutput {
+  color: #0033ff; /* Gojo blue */
+  font-weight: bold;
+  text-shadow: 0 0 10px #0033ff;
+}
