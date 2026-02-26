@@ -6,16 +6,18 @@
   <meta name="viewport" content="width=device-width">
   <title>JJK Character Creator</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <label for="technique">Choose a Curse Technique:</label>
-  <select name="technique" id="techniques">
+  <h1>JJK CHARACTER CREATOR</h1>
+
+  <label>Choose a Curse Technique:</label><br>
+  <select id="techniques">
     <option value="empty" power="0">None</option>
     <option value="eyes" power="100">Six Eyes</option>
-    <option value="limitless" power="100"> Limitless</option>
+    <option value="limitless" power="100">Limitless</option>
     <option value="shrine" power="100">Shrine</option>
     <option value="boogie" power="40">Boogie Woogie</option>
     <option value="shadows" power="60">Ten Shadows</option>
@@ -26,8 +28,10 @@
     <option value="projection" power="50">Projection Sorcery</option>
   </select>
 
-  <label for="weapon"><br><br>Choose a Weapon Type:</label>
-  <select name="weapon" id="weapons">
+  <br><br>
+
+  <label>Choose a Weapon:</label><br>
+  <select id="weapons">
     <option value="empty" power="0">None</option>
     <option value="soulsplit" power="90">Soul Split Katana</option>
     <option value="cloud" power="90">Playful Cloud</option>
@@ -38,42 +42,49 @@
     <option value="kamutoke" power="100">Kamutoke</option>
   </select>
 
-  <label for="species"><br><br>Choose a Species:</label>
-  <select name="species" id="species">
+  <br><br>
+
+  <label>Choose a Species:</label><br>
+  <select id="species">
     <option value="human" power="5">Human</option>
     <option value="curse" power="3">Curse</option>
     <option value="disaster" power="80">Disaster Curse</option>
     <option value="reincarnation" power="90">Reincarnation</option>
     <option value="painting" power="65">Death Painting</option>
     <option value="vessel" power="65">Vessel</option>
-    <option value="Vengeful" power="80">Vengeful Spirit</option>
+    <option value="vengeful" power="80">Vengeful Spirit</option>
   </select>
 
-  <label for="domain"><br><br>Choose a Domain Type:</label>
-  <select name="domain" id="domains">
+  <br><br>
+
+  <label>Choose a Domain:</label><br>
+  <select id="domains">
     <option value="empty" power="0">None</option>
-    <option value="Barrier" power="70">Barrier</option>
+    <option value="barrier" power="70">Barrier</option>
     <option value="incomplete" power="50">Incomplete</option>
-    <option value="Barrierless" power="100">Barrierless</option>
+    <option value="barrierless" power="100">Barrierless</option>
   </select>
 
-  <label for="ce"><br><br>Cursed Energy:</label>
-  <input type="range" id="ce" name="ce" min="0" max="200" value="50" step="1">
-  <p>Current Cursed Energy: <output id="valueOutput">"ce"</output></p>
-  
-  <p>Total Power: <output id="power">"totalPower"</output></p>
+  <br><br>
+
+  <label>Cursed Energy:</label><br>
+  <input type="range" id="ce" min="0" max="200" value="50">
+  <p>Current Cursed Energy: <span id="valueOutput">50</span></p>
+
+  <p>Total Power: <span id="power">0</span></p>
+
+  <p class="grade-display">Grade: <span id="grade">Grade 4</span></p>
+
   <script>
     var slider = document.getElementById("ce");
     var output = document.getElementById("valueOutput");
     var totalPowerOutput = document.getElementById("power");
+    var gradeOutput = document.getElementById("grade");
 
     var techniques = document.getElementById("techniques");
     var weapons = document.getElementById("weapons");
     var species = document.getElementById("species");
     var domains = document.getElementById("domains");
-
-    // Show starting cursed energy
-    output.innerHTML = slider.value;
 
     function calculatePower() {
       var cePower = parseInt(slider.value);
@@ -86,23 +97,41 @@
       var total = cePower + techniquePower + weaponPower + speciesPower + domainPower;
 
       totalPowerOutput.innerHTML = total;
+      output.innerHTML = cePower;
+
+      var grade;
+
+      if (total >= 400) {
+        grade = "Special Grade";
+        gradeOutput.className = "special";
+      } else if (total >= 320) {
+        grade = "Semi-Grade 1";
+        gradeOutput.className = "semi";
+      } else if (total >= 250) {
+        grade = "Grade 1";
+        gradeOutput.className = "grade1";
+      } else if (total >= 180) {
+        grade = "Grade 2";
+        gradeOutput.className = "grade2";
+      } else if (total >= 120) {
+        grade = "Grade 3";
+        gradeOutput.className = "grade3";
+      } else {
+        grade = "Grade 4";
+        gradeOutput.className = "grade4";
+      }
+
+      gradeOutput.innerHTML = grade;
     }
 
-    // Update CE number and total power
-    slider.oninput = function () {
-      output.innerHTML = this.value;
-      calculatePower();
-    };
-
-    // Update total power when dropdown changes
+    slider.oninput = calculatePower;
     techniques.onchange = calculatePower;
     weapons.onchange = calculatePower;
     species.onchange = calculatePower;
     domains.onchange = calculatePower;
 
-    // Run once at start
     calculatePower();
   </script>
-</body>
 
+</body>
 </html>

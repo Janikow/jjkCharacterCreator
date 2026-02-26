@@ -1,4 +1,3 @@
-/* Import anime-style font */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
 
 body {
@@ -9,16 +8,21 @@ body {
   padding: 40px;
 }
 
-/* Headings & Labels */
+h1 {
+  font-size: 28px;
+  color: white;
+  text-shadow: 0 0 20px #e10600;
+  margin-bottom: 30px;
+}
+
 label {
   font-size: 18px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #e10600; /* Sukuna red */
+  color: #e10600;
   text-shadow: 0 0 8px #e10600;
 }
 
-/* Dropdown Styling */
 select {
   background: #1a1a1a;
   color: white;
@@ -36,43 +40,74 @@ select:hover {
   transform: scale(1.05);
 }
 
-/* Slider Styling */
 input[type="range"] {
-  -webkit-appearance: none;
   width: 250px;
   height: 8px;
   background: linear-gradient(to right, #0033ff, #e10600);
   border-radius: 5px;
-  outline: none;
   margin-top: 20px;
 }
 
-/* Slider Thumb */
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 15px #0033ff;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-input[type="range"]::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 25px #e10600;
-  transform: scale(1.2);
-}
-
-/* Cursed Energy Display */
 p {
   font-size: 18px;
   margin-top: 10px;
 }
 
 #valueOutput {
-  color: #0033ff; /* Gojo blue */
+  color: #0033ff;
   font-weight: bold;
   text-shadow: 0 0 10px #0033ff;
+}
+
+/* ===== GRADE VFX ===== */
+
+.grade-display {
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+/* Grade 4 */
+.grade4 {
+  color: gray;
+  text-shadow: none;
+}
+
+/* Grade 3 */
+.grade3 {
+  color: green;
+  text-shadow: 0 0 8px green;
+}
+
+/* Grade 2 */
+.grade2 {
+  color: cyan;
+  text-shadow: 0 0 10px cyan;
+}
+
+/* Grade 1 */
+.grade1 {
+  color: orange;
+  text-shadow: 0 0 15px orange;
+}
+
+/* Semi Grade 1 */
+.semi {
+  color: purple;
+  text-shadow: 0 0 15px purple, 0 0 25px purple;
+}
+
+/* Special Grade (Animated Glow) */
+.special {
+  color: red;
+  animation: specialGlow 1.5s infinite alternate;
+  text-shadow: 0 0 20px red, 0 0 40px crimson;
+}
+
+@keyframes specialGlow {
+  from {
+    text-shadow: 0 0 15px red, 0 0 25px crimson;
+  }
+  to {
+    text-shadow: 0 0 35px red, 0 0 60px crimson;
+  }
 }
